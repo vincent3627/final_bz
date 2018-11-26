@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.GuruDao">
+     <insert id="insert">
+         insert into
+            guru
+         values(
+             #{id},
+             #{name},
+             #{dharmaName},
+             #{status},
+             #{phoneNum},
+             #{photoImg}
+         )
+     </insert>
+
+    <select id="selectByPage" resultType="Guru">
+        select
+            id,
+            name,
+            dharmaName,
+            status,
+            phoneNum,
+            photoImg
+        from
+            guru
+        limit ${(currPage-1)*pageSize},${pageSize}
+    </select>
+
+    <select id="selectTotal" resultType="java.lang.Integer">
+        select
+            count(id)
+        from
+            guru
+    </select>
+
+    <delete id="delete">
+        delete from guru where id in
+        <foreach collection="array" open="(" item="id" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

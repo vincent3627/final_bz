@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="cmfz_bz:war">
+    <output-path>$PROJECT_DIR$/cmfz_bz/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>cmfz_bz</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="cmfz_bz.war">
+      <element id="artifact" artifact-name="cmfz_bz:war exploded" />
+    </root>
+  </artifact>
+</component>

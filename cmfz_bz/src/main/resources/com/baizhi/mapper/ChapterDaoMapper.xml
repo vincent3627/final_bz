@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ChapterDao">
+     <insert id="insert">
+        insert into
+            chapter
+        values(
+            #{id},
+            #{title},
+            #{duration},
+            #{size},
+            #{audioPath},
+            #{albumId},
+            #{createDate}
+         )
+
+     </insert>
+    <select id="selectCountByPid" resultType="java.lang.Integer">
+        select
+            count(id)
+        from
+            chapter
+        where
+            album_id=#{albumId}
+    </select>
+
+    <update id="update">
+        update
+            chapter
+        set
+            title=#{title},
+            duration=#{duration},
+            size=#{size},
+            audioPath=#{audioPath},
+            album_id=#{albumId}
+        where
+            id=#{id}
+    </update>
+</mapper>

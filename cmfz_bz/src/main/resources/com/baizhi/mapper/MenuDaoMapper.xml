@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "../mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.MenuDao">
+    <resultMap id="mmap" type="Menu">
+        <id column="mid" property="id"/>
+        <result column="mtitle" property="title"/>
+        <result column="mcontent" property="content"/>
+        <result column="mhref" property="href"/>
+        <result column="miconCls" property="iconCls"/>
+        <result column="mparent_id" property="parentId"/>
+        <collection property="children" ofType="Menu">
+            <id column="nid" property="id"/>
+            <result column="ntitle" property="title"/>
+            <result column="ncontent" property="content"/>
+            <result column="nhref" property="href"/>
+            <result column="niconCls" property="iconCls"/>
+            <result column="nparent_id" property="parentId"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectMenu" resultMap="mmap">
+        select
+            m.id mid,
+            m.title mtitle,
+            m.content mcontent,
+            m.href mhref,
+            m.iconCls miconCls,
+            m.parent_id mparent_id,
+            n.id nid,
+            n.title ntitle,
+            n.content ncontent,
+            n.href nhref,
+            n.iconCls niconCls,
+            n.parent_id nparent_id
+        from
+            menu m
+        left join
+            menu n
+        on
+            m.id=n.parent_id
+        where
+            n.parent_id != 1
+    </select>
+     
+</mapper>
